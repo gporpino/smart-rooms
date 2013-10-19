@@ -15,6 +15,7 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+    @room.owner_id = current_user.id
   end
 
   # GET /rooms/1/edit
@@ -42,7 +43,7 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1.json
   def update
     respond_to do |format|
-      if @room.update(room_params)
+      if @room.update(room_params_update)
         format.html { redirect_to @room, notice: 'Room was successfully updated.' }
         format.json { head :no_content }
       else
@@ -66,11 +67,14 @@ class RoomsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_room
       @room = Room.find(params[:id])
-      puts "room: #{@room.to_yaml}"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       params.require(:room).permit(:owner_id, :name, {:user_ids => [] })
+    end
+
+    def room_params_update
+      params.require(:room).permit(:name, {:user_ids => [] })
     end
 end
