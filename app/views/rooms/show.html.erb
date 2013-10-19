@@ -4,6 +4,12 @@
   <strong>Owner:</strong>
   <%= @room.owner_id %>
 </p>
+<p>
+  <strong>Users:</strong>
+  <% @room.users.each do |u| %>
+  		<%= u.name %> , 
+  <% end %>
+</p>
 
 <%= link_to 'Edit', edit_room_path(@room) %> |
 <%= link_to 'Back', rooms_path %>

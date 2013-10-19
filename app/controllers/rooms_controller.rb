@@ -26,6 +26,7 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
 
+    debugger
     respond_to do |format|
       if @room.save
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
@@ -65,10 +66,11 @@ class RoomsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_room
       @room = Room.find(params[:id])
+      puts "room: #{@room.to_yaml}"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:owner_id)
+      params.require(:room).permit(:owner_id, :name, {:users => [:id] })
     end
 end
