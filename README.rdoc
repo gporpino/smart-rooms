@@ -2,4 +2,4 @@
 
 Build on Rumble 2013
 
-Application to help people and companies to manager yours collaboratives spaces.
+Application to help people and companies manager yours collaboratives spaces.
