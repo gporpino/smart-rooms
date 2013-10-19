@@ -15,7 +15,6 @@
 //= require chosen-jquery
 //= require bootstrap
 //= require bootstrap-datetimepicker
-//= require locales/bootstrap-datetimepicker.pt-BR
 //= require turbolinks
 //= require_tree .
 
