@@ -7,6 +7,7 @@ class Ability
     # user ||= User.new # guest user (not logged in)
     if user
       can :manage, User, :id => user.id
+      can :manage, Room, :owner_id => user.id
     else
       cannot :manage, :all
     end
