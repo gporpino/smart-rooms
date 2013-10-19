@@ -1,12 +1,14 @@
 source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails'
 
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'cancan'
 gem 'will_paginate', '~> 3.0'
+gem 'ransack'
+gem 'faker'
 
 # Use postgresql as the database for Active Record
 group :development do
@@ -41,9 +43,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-gem 'bcrypt-ruby', '3.0.1'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'chosen-rails'
+
+gem 'compass-rails', github: 'Compass/compass-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

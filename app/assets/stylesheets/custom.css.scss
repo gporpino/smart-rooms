@@ -15,6 +15,7 @@
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
+$grayMediumDark: #2a2a2a;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -183,4 +184,9 @@ footer {
 
 .table_row {
   cursor: pointer; cursor: hand;
+}
+
+/* chosen */
+.chosen-container .chosen-results li.active-result {
+  color:$grayMediumDark;
 }

@@ -4,7 +4,8 @@ class RoomsController < ApplicationController
   # GET /rooms
   # GET /rooms.json
   def index
-    @rooms = @rooms.paginate(:page => params[:page])
+    @search = @rooms.search(params[:q])
+    @rooms = @search.result.paginate(:page => params[:page])
   end
 
   # GET /rooms/1

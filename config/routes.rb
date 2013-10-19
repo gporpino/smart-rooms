@@ -4,7 +4,7 @@ Smartrooms::Application.routes.draw do
 
   resources :reservations
 
-  resources :users
+  resources :users, except: [:index]
 
   resources :sessions, only: [:new, :create, :destroy]
 

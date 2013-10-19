@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 //= require chosen-jquery
+//= require bootstrap
 //= require bootstrap-datetimepicker
 //= require locales/bootstrap-datetimepicker.pt-BR
 //= require turbolinks

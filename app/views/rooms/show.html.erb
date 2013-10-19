@@ -5,11 +5,20 @@
       <h1><%= @room.name %></h1>
       <h3><%= @room.owner.name %></h3>
     </section>
-    <p>//TODO Put magic field for create reservaion</p>
+    <p>//TODO Put magic field for create reservation</p>
+    <section>
+      <p>
+        <% @room.users.each_with_index do |u, index| %>
+          <%= link_to u.name, u %><%= ',' unless index == @room.users.size - 1%>
+        <% end %>
+      </p>
+    </section>
     <section>
       <h4>
-        <%= link_to 'Edit', edit_room_path(@room) %> |
-        <%= link_to 'Destroy', @room, method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <% if can? :manage, @room %>
+          <%= link_to 'Edit', edit_room_path(@room) %> |
+          <%= link_to 'Destroy', @room, method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <% end %>
         <%= link_to 'Back', rooms_path %>
       </h4>
     </section>
