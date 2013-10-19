@@ -11,18 +11,31 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :owner_id %>  
+  <div class="field">
+    <%= f.label :what_you_want_to_do? %><br>
+    <%= f.text_field :reason %>
+  </div>
   <div class="field datetime">
     <%= f.label :initial_date %><br>
-    <%= f.datetime_select :initial_date %>
+    
+    <% f.text_field :chronic_initial_date, 'data-format' => "yyyy-MM-dd" %>
+    <div class="input-append datetime">
+      
+      <span class="add-on">
+        <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+        </i>
+      </span>
+    </div>
+    
+
   </div>
+
   <div class="field">
     <%= f.label :end_date %><br>
     <%= f.datetime_select :end_date %>
   </div>
-  <div class="field">
-    <%= f.label :owner_id %><br>
-    <%= f.number_field :owner_id %>
-  </div>
+  
   <div class="actions">
     <%= f.submit %>
   </div>

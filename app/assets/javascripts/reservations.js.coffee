@@ -3,5 +3,5 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $(".datetime select").each (i, item) ->
-    $(item).attr "width", "30px"
+  $(".datetime").datetimepicker pickTime: false
+
