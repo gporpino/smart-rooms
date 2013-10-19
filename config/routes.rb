@@ -16,7 +16,8 @@ Smartrooms::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'static_pages#home'
+  root :to => 'rooms#index', :constraints => lambda{|req| !req.session[:user_id].blank?}, as: :authenticated_root
+  root :to => 'static_pages#home'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
