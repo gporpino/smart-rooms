@@ -6,6 +6,7 @@ gem 'rails', '4.0.0'
 gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 gem 'cancan'
+gem 'will_paginate', '~> 3.0'
 
 # Use postgresql as the database for Active Record
 group :development do

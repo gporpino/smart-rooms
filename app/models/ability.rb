@@ -10,6 +10,7 @@ class Ability
       can :manage, Room, :owner_id => user.id
     else
       cannot :manage, :all
+      can [:new, :create], User
     end
     #
     # The first argument to `can` is the action you are giving the user
