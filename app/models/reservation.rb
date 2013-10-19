@@ -7,6 +7,7 @@ class Reservation < ActiveRecord::Base
   validates :end_date, presence: true
   validates :room_id, presence: true
 
+  default_scope order("initial_date ASC")
   scope :future, joins(:room).where("initial_date > ?", Date.today)
 
 end

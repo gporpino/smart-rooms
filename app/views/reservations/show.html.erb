@@ -8,7 +8,7 @@
       <h4>
         <%= link_to 'Edit', edit_room_reservation_path(@room, @reservation) %> |
         <%= link_to 'Destroy', [@room, @reservation], method: :delete, data: { confirm: 'Are you sure?' } %> |
-        <%= link_to 'Back', :back %>
+        <%= link_to 'Back', @room %>
       </h4>
     </section>
   </aside>
