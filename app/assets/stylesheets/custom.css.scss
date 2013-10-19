@@ -52,19 +52,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-  font-size: 3.2em;
-  letter-spacing: -2px;
-  margin-bottom: 30px;
   text-align: center;
 }
 
 h2 {
-  font-size: 1.2em;
-  letter-spacing: -1px;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: normal;
-  color: $grayLight;
+  text-align: left;
 }
 
 p {
@@ -72,6 +64,12 @@ p {
   line-height: 1.7em;
 }
 
+h1.heading{
+  font-size: 3.6em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+}
 
 /* header */
 
@@ -89,6 +87,10 @@ p {
     color: white;
     text-decoration: none;
   }
+}
+
+.nav.pull-right li{
+  font-size: 1.2em;
 }
 
 /* forms */
@@ -135,7 +137,40 @@ footer {
   }
 }
 
-/* header */
-.nav.pull-right li{
-  font-size: 1.2em;
+.jumbotron {
+  padding: 40px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 21px;
+  font-weight: 200;
+  line-height: 2.1428571435;
+  color: inherit;
+  background-color: #0d747c;
+}
+
+.jumbotron h1 {
+  line-height: 1;
+  color: inherit;
+}
+
+.jumbotron p {
+  line-height: 1.4;
+}
+
+.container .jumbotron {
+  border-radius: 6px;
+}
+
+@media screen and (min-width: 768px) {
+  .jumbotron {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  .container .jumbotron {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+  .jumbotron h1 {
+    font-size: 63px;
+  }
 }
