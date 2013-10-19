@@ -8,6 +8,7 @@ class Ability
     if user
       can :manage, User, :id => user.id
       can :manage, Room, :owner_id => user.id
+      can :manage, Reservation
     else
       cannot :manage, :all
       can [:new, :create], User

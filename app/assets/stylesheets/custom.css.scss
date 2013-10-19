@@ -10,6 +10,8 @@
 // And finally bootswatch style itself
 @import "bootswatch/amelia/bootswatch";
 
+@import "bootstrap-datetimepicker";
+
 /* mixins, variables, etc. */
 
 $grayMediumLight: #eaeaea;
@@ -125,6 +127,7 @@ footer {
   padding-top: 5px;
   small {
     float: right;
+    margin-bottom: 15px;
   }
   ul {
     float: left;
@@ -135,6 +138,8 @@ footer {
     }
   }
 }
+
+/* Jumbotron */
 
 .jumbotron {
   padding: 40px;
