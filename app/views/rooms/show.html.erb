@@ -1,21 +1,21 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Owner:</strong>
-  <%= @room.owner.name %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @room.name %>
-</p>
-
-<p>
-  <strong>Users:</strong>
-  <% @room.users.each do |u| %>
-  		<%= u.name %> <br/>
-  <% end %>
-</p>
-
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
+<div class="row">
+  <aside class="span3">
+    <section>
+      <h1><%= @room.name %></h1>
+      <h3><%= @room.owner.name %></h3>
+    </section>
+    <p>//TODO Put magic field for create reservaion</p>
+    <section>
+      <h4>
+        <%= link_to 'Edit', edit_room_path(@room) %> |
+        <%= link_to 'Destroy', @room, method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <%= link_to 'Back', rooms_path %>
+      </h4>
+    </section>
+  </aside>
+  <aside class="span9">
+    <h1>Reservations</h1>
+    <p>//TODO Show reservations</p>
+  </aside>
+</div>

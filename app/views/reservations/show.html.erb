@@ -1,19 +1,18 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <aside class="span3">
+    <section>
+      <h3><%= @reservation.owner.name %></h3>
+    </section>
+    <section>
+      <h4>
+        <%= link_to 'Edit', edit_reservation_path(@reservation) %> |
+        <%= link_to 'Destroy', @reservation, method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <%= link_to 'Back', :back %>
+      </h4>
+    </section>
+  </aside>
+  <aside class="span9">
+    <h1>Infos</h1>
+  </aside>
+</div>
 
-<p>
-  <strong>Initial date:</strong>
-  <%= @reservation.initial_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @reservation.end_date %>
-</p>
-
-<p>
-  <strong>Owner:</strong>
-  <%= @reservation.owner_id %>
-</p>
-
-<%= link_to 'Edit', edit_reservation_path(@reservation) %> |
-<%= link_to 'Back', reservations_path %>

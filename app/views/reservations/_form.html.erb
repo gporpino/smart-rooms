@@ -1,38 +1,29 @@
 <%= form_for(@reservation) do |f| %>
-  <% if @reservation.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@reservation.errors.count, "error") %> prohibited this reservation from being saved:</h2>
 
-      <ul>
-      <% @reservation.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render 'shared/error_messages', obj: f.object  %>
 
   <%= f.hidden_field :owner_id %>
-  <div class="field">
-    <%= f.label :what_you_want_to_do? %><br>
-    <%= f.text_field :reason %>
-  </div>
 
-
-  <div id="datetimepicker1" class="input-append date">
-    <%= f.text_field :initial_date, data: {format: "dd/MM/yyyy hh:mm:ss"} %>
+  <%= f.label :initial_date %>
+  <div class="input-append date datetimepicker">
+    <%= f.text_field :initial_date, data: {format: "dd/MM/yyyy hh:mm"} %>
     <span class="add-on">
       <i data-time-icon="icon-time" data-date-icon="icon-calendar">
       </i>
     </span>
   </div>
 
-
-  <div class="field">
-    <%= f.label :end_date %><br>
-    <%= f.datetime_select :end_date %>
+  <%= f.label :end_date %>
+  <div class="input-append date datetimepicker">
+    <%= f.text_field :end_date, data: {format: "dd/MM/yyyy hh:mm"} %>
+    <span class="add-on">
+      <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+      </i>
+    </span>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <hr>
+
+  <%= f.submit 'Confirm', class: "btn btn-large btn-primary"%>
+
 <% end %>

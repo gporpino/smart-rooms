@@ -16,3 +16,5 @@
 /tmp
 
 app/models/#*merge*#5303OLg#
+
+.DS_Store

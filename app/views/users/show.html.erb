@@ -1,14 +1,22 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1><%= @user.name %></h1>
+      <h3><%= @user.email %></h3>
+    </section>
+    <section>
+      <h4>
+        <%= link_to 'Edit', edit_user_path(@user) %> |
+        <%= link_to 'Back', :back %>
+      </h4>
+    </section>
+  </aside>
+  <aside class="span8">
+    <h1>My Rooms</h1>
+    <p>//TODO Listing of owner rooms</p>
+  </aside>
+  <aside class="span8">
+    <h1>Rooms i belongs</h1>
+     <p>//TODO Listing of belongs rooms</p>
+  </aside>
+</div>
