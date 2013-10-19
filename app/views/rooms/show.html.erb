@@ -2,12 +2,18 @@
 
 <p>
   <strong>Owner:</strong>
-  <%= @room.owner_id %>
+  <%= @room.owner.name %>
 </p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @room.name %>
+</p>
+
 <p>
   <strong>Users:</strong>
   <% @room.users.each do |u| %>
-  		<%= u.name %> , 
+  		<%= u.name %> <br/>
   <% end %>
 </p>
 

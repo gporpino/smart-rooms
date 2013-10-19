@@ -11,19 +11,16 @@
     </div>
   <% end %>
 
+  <%= f.hidden_field :owner_id%>  
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label :owner_id %><br>
-    <%= f.number_field :owner_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :owner_id %><br>
-    <%= f.select :users,
+    <%= f.label :users %><br>
+    <%= f.select :user_ids,
       User.all.map { |u| [u.name, u.id] },
       { include_blank: true },
       { class: 'chosen-select', multiple: true }

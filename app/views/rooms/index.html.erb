@@ -1,9 +1,11 @@
 <h1>Listing rooms</h1>
 
-<table>
+<table width='100%'>
   <thead>
     <tr>
       <th>Owner</th>
+      <th>Name</th>
+      <th>Users</th>
       <th></th>
       <th></th>
       <th></th>
@@ -13,7 +15,12 @@
   <tbody>
     <% @rooms.each do |room| %>
       <tr>
-        <td><%= room.owner_id %></td>
+        <td><%= room.owner.name %></td>
+        <td><%= room.name %></td>
+        <td>
+          <% room.users.each do |u| %>
+            <%= u.name + " " %> <br/>
+          <% end %></td>
         <td><%= link_to 'Show', room %></td>
         <td><%= link_to 'Edit', edit_room_path(room) %></td>
         <td><%= link_to 'Destroy', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
