@@ -24,7 +24,7 @@
     <% @rooms.each do |room| %>
       <tr data-link="<%= room_path(room) %>" class='table_row'>
         <td><%= room.name %></td>
-        <td><%= room.owner.name %></td>
+        <td><%= room.owner == current_user ? "I'm the owner" : room.owner.name %></td>
       </tr>
     <% end %>
   </tbody>

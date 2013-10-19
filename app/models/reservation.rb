@@ -1,14 +1,10 @@
 class Reservation < ActiveRecord::Base
 
 	belongs_to :owner, :foreign_key => "owner_id", :class_name => "User"
+  belongs_to :room
 
-	validates_presence_of :initial_date
+	validates :initial_date, presence: true
+  validates :end_date, presence: true
+  validates :room_id, presence: true
 
-  def chronic_initial_date
-    self.initial_date
-  end
-
-  def chronic_initial_date=(s)
-    self.initial_date = Chronic.parse(s) if s
-  end
 end

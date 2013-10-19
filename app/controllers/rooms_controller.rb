@@ -11,6 +11,8 @@ class RoomsController < ApplicationController
   # GET /rooms/1
   # GET /rooms/1.json
   def show
+    @search = @room.reservations.search(params[:q])
+    @reservations = @search.result.paginate(:page => params[:page], :per_page => 5)
   end
 
   # GET /rooms/new

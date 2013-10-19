@@ -1,18 +1,29 @@
+<%- model_class = Reservation -%>
 <div class="row">
   <aside class="span3">
     <section>
-      <h3><%= @reservation.owner.name %></h3>
+      <h1><%= @reservation.room.name %></h1>
     </section>
     <section>
       <h4>
-        <%= link_to 'Edit', edit_reservation_path(@reservation) %> |
-        <%= link_to 'Destroy', @reservation, method: :delete, data: { confirm: 'Are you sure?' } %> |
+        <%= link_to 'Edit', edit_room_reservation_path(@room, @reservation) %> |
+        <%= link_to 'Destroy', [@room, @reservation], method: :delete, data: { confirm: 'Are you sure?' } %> |
         <%= link_to 'Back', :back %>
       </h4>
     </section>
   </aside>
   <aside class="span9">
-    <h1>Infos</h1>
+    <h1>Reservation Infos</h1>
+     <section class='well'>
+      <%= content_tag :h3, model_class.human_attribute_name(:owner) %>
+      <%= content_tag :p, @reservation.owner.name  %>
+      <%= content_tag :h3, model_class.human_attribute_name(:initial_date) %>
+      <%= content_tag :p, @reservation.initial_date.to_formatted_s(:long) %>
+      <%= content_tag :h3, model_class.human_attribute_name(:end_date) %>
+      <%= content_tag :p, @reservation.end_date.to_formatted_s(:long) %>
+      <%= content_tag :h3, model_class.human_attribute_name(:reason) %>
+      <%= content_tag :p, @reservation.reason %>
+     </section>
   </aside>
 </div>
 

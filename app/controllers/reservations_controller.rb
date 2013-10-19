@@ -1,5 +1,6 @@
 class ReservationsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :room
+  load_and_authorize_resource :through => :room
 
 
   # GET /reservations
@@ -24,11 +25,11 @@ class ReservationsController < ApplicationController
   # POST /reservations
   # POST /reservations.json
   def create
-    @reservation = Reservation.new(reservation_params)
+    @reservation = @room.reservations.build(reservation_params)
 
     respond_to do |format|
       if @reservation.save
-        format.html { redirect_to @reservation, :flash => { success: 'Reservation was successfully created.' } }
+        format.html { redirect_to [@room, @reservation], :flash => { success: 'Reservation was successfully created.' } }
         format.json { render action: 'show', status: :created, location: @reservation }
       else
         format.html { render action: 'new' }
@@ -42,7 +43,7 @@ class ReservationsController < ApplicationController
   def update
     respond_to do |format|
       if @reservation.update(reservation_params)
-        format.html { redirect_to @reservation, :flash => { success: 'Reservation was successfully updated.' } }
+        format.html { redirect_to [@reservation.room, @reservation] , :flash => { success: 'Reservation was successfully updated.' } }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,7 +57,7 @@ class ReservationsController < ApplicationController
   def destroy
     @reservation.destroy
     respond_to do |format|
-      format.html { redirect_to reservations_url,  :flash => { success: 'Reservation was successfully destroyed.' } }
+      format.html { redirect_to @room,  :flash => { success: 'Reservation was successfully destroyed.' } }
       format.json { head :no_content }
     end
   end
@@ -65,6 +66,6 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:initial_date, :end_date, :owner_id)
+      params.require(:reservation).permit(:initial_date, :end_date, :owner_id, :reason)
     end
 end
