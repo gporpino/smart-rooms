@@ -7,7 +7,9 @@ gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 
 # Use postgresql as the database for Active Record
-gem 'pg'
+group :development do
+  gem 'pg'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -46,3 +48,10 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem 'capistrano', '~> 2.15'
+
+group :production do
+  gem 'mysql2' # If using mysql in development, this can be outside the production group.
+  gem 'therubyracer'
+end
