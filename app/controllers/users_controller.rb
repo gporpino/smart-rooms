@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-  skip_authorization_check :only => [:new, :create]
   load_and_authorize_resource
+  skip_authorization_check :only => [:new, :create]
 
   # GET /users
   # GET /users.json
   def index
+    @users = @users.paginate(:page => params[:page])
   end
 
   # GET /users/1
