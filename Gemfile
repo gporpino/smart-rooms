@@ -7,7 +7,9 @@ gem 'bootstrap-sass'
 gem 'bootswatch-rails'
 
 # Use postgresql as the database for Active Record
-gem 'pg'
+group :development do
+  gem 'pg'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
