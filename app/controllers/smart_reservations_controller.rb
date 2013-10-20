@@ -1,3 +1,5 @@
+require 'chronic'
+
 class SmartReservationsController < ApplicationController
   skip_authorization_check
 
@@ -5,13 +7,26 @@ class SmartReservationsController < ApplicationController
   end
 
   def search
+    room = params[:room]
+    date = params[:date]
+    starts = params[:starts]
+    duration = params[:duration]
 
-    # result = JSON.parse(params)
-    room = params[:date]
+    @rooms = []
 
-    debugger
+    if date && starts && duration
+      
+      @rooms = Room.all
+      
+      initial = Chronic.parse(date)
 
-    @rooms = Room.all
+      end_date = initial + (duration.split(' ').first).to_i.hours
+      
+      @rooms = @rooms.joins(:reservations).where('reservations.initial_date.day == initial_date') 
+
+    end
+
+    @rooms = @rooms.where(name: room) if room   
 
     render 'result', :layout => false
   end
