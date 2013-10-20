@@ -12,21 +12,23 @@ class SmartReservationsController < ApplicationController
     starts = params[:starts]
     duration = params[:duration]
 
-    @rooms = []
+    @rooms = rooms
 
     if date && starts && duration
-      
-      @rooms = Room.all
-      
+
       initial = Chronic.parse(date)
 
       end_date = initial + (duration.split(' ').first).to_i.hours
-      
-      @rooms = @rooms.joins(:reservations).where('reservations.initial_date.day == initial_date') 
+
+      @rooms = @rooms.join(:reservations).where(
+        '((reservations.initial_date BETWEEN :initial_date AND :end_date OR reservations.end_date BETWEEN :initial_date AND :end_date)
+        OR (reservations.initial_date <= :initial_date AND end_date >= :end_date))
+        AND room_id = :room_id',
+        end_date: end_date, initial_date: initial_date, room_id: room.id)
 
     end
 
-    @rooms = @rooms.where(name: room) if room   
+    @rooms = @rooms.where(name: room) if room
 
     render 'result', :layout => false
   end

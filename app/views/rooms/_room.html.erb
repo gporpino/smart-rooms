@@ -1,4 +1,5 @@
 <%- owner_name = room.owner == current_user ? "You" : room.owner.name -%>
 <li>
-  <span><%= link_to "#{room.name} belongs to #{owner_name}", new_room_reservation_path(room) %></span>
+  <span><%= link_to "#{room.name} belongs to #{owner_name}",
+  new_room_reservation_path(room), data: { params: 'lol'}, :onclick => '' %></span>
 </li>
