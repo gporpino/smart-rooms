@@ -45,7 +45,7 @@ $(document).ready(function() {
       container : $('.visual_search'),
       query     : '',
       callbacks : {
-        search       : function(query, searchCollection) {
+        search: function(query, searchCollection) {
         	
         	var list = [];
           $(searchCollection).each(function (i, item){
