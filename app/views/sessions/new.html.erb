@@ -13,8 +13,9 @@
       <hr>
 
       <%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
-    <% end %>
 
-    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+    <% end %>
+    <p>New user? <%= link_to "Sign up now!", signup_path %>
+    Rumble Judge? <%= link_to "Guest user!", users_path, method: :post %></p>
   </div>
 </div>

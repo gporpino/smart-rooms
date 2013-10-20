@@ -21,10 +21,11 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
+    @user = params[:user] ? User.new(user_params) : User.new_guest
 
     respond_to do |format|
       if @user.save
+        current_user.move_to(@user) if current_user && current_user.guest?
         sign_in @user
         format.html { redirect_to @user, :flash => { success: 'User was successfully created. Welcome!' } }
         format.json { render action: 'show', status: :created, location: @user }

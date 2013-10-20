@@ -8,7 +8,8 @@ ready = ->
   $("#reservation_end_date").unwrap() if $("#reservation_end_date").parent().hasClass('field_with_errors')
   events_array = []
   if $("#calendar").length > 0
-    $.getJSON("/reservations/"+$('#calendar').data('room'), (data) ->
+    url = "/rooms/"+$('#calendar').data('room')+"/reservations/"
+    $.getJSON(url, (data) ->
       $.each data, (index, value) ->
         events_array.push
           startDate: new Date(value.startDate)

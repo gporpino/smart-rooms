@@ -6,7 +6,7 @@ class Ability
     if user
 
       rooms_i_belongs = []
-      user.rooms.each do |room|
+      user.associations.each do |room|
           rooms_i_belongs << room.id
       end
 
@@ -14,7 +14,8 @@ class Ability
       can :show, User
       can :manage, Room, :owner_id => user.id
       can :read, Room, :id => rooms_i_belongs
-      can :manage, Reservation
+      can :manage, Reservation, :owner_id => user.id
+      can :read, Reservation, :room_id => rooms_i_belongs
     else
       cannot :manage, :all
       can [:new, :create], User

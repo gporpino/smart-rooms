@@ -16,6 +16,7 @@
       <h4>
         <% if can? :manage, @room %>
           <%= link_to 'Edit', edit_room_path(@room) %> |
+          <%= link_to 'All Reservations', room_reservations_path(@room) %> |
           <%= link_to 'Destroy', @room, method: :delete, data: { confirm: 'Are you sure?' } %> |
         <% end %>
         <%= link_to 'Back', rooms_path %>

@@ -2,7 +2,6 @@ class RoomsController < ApplicationController
   include ActionView::Helpers::DateHelper
   load_and_authorize_resource
 
-
   # GET /rooms
   # GET /rooms.json
   def index
@@ -67,7 +66,7 @@ class RoomsController < ApplicationController
   end
 
   def reservation
-    reservations = Room.find(params.require(:id)).reservations.map do |r|
+    reservations = Room.find(params.require(:room_id)).reservations.map do |r|
       {
         startDate: r.initial_date.strftime('%Y/%m/%d %H:%M:%S'),
         endDate: r.end_date.strftime('%Y/%m/%d %H:%M:%S'),
