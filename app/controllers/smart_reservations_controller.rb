@@ -10,11 +10,9 @@ class SmartReservationsController < ApplicationController
   def facets
 
   	@result = ['room', 'when', 'time']
-  	debugger
-  	@result
   end	
 
-  def value_matches facet
+  def values facet
 
   	case facet
     	when 'room' then
