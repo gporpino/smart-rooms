@@ -1,10 +1,10 @@
 class SmartReservationsController < ApplicationController
-	skip_authorization_check 
+	skip_authorization_check
 
-	
-	
+
+
 	def index
-    
+
   end
 
 	def search
@@ -12,29 +12,32 @@ class SmartReservationsController < ApplicationController
 		whenn = params[:when]
 
 		
-
-  	@result = ['room', 'when']
-  	render json: @result
+  	
+  	# render json: @result
   end	  
 
   def facets
 
-  	@result = ['room', 'when']
+
+  	@result = ['room', 'date', 'length']
+
   	render json: @result
-  end	
+  end
 
-  def values 
 
-  	facet = params[:facet]
+  def values
 
-  	case facet
+  	case params.require(:facet)
     	when 'room' then
         @result = [ 	{ value: 'ITBC', label: 'ITBC' },
           					{ value: 'Cultura', label: 'Cultura' },
           					{ value: 'The Hub', label: 'The Hub' } ]
-      
-      when 'when' then
+
+      when 'date' then
         @result = ['tomorrow', 'today']
+
+      when 'length' then
+        @result = ['1 hour', '30 minutes']
 
     end
 

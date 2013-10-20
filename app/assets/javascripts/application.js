@@ -17,11 +17,17 @@
 //= require bootstrap-datetimepicker
 //= require turbolinks
 //= require migration
-//= require jquery.ui.core.js
-//= require jquery.ui.position.js
-//= require jquery.ui.datepicker.js
-//= require date.js
-//= require jquery.dp_calendar.min.js
+//= require jquery.ui.core
+//= require jquery.ui.position
+//= require jquery.ui.widget
+//= require jquery.ui.menu
+//= require jquery.ui.autocomplete
+//= require jquery.ui.datepicker
+//= require underscore-1.4.3
+//= require backbone-0.9.10
+//= require date
+//= require jquery.dp_calendar.min
+//= require visualsearch
 //= require_tree .
 
 String.prototype.format = String.prototype.f = function() {
