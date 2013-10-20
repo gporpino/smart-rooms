@@ -58,7 +58,7 @@ $(document).ready(function() {
             for (i = 0; i < queries.length; i = i+1){
             	paramText = queries[i].replaceAll('"','');
             	
-            	params = paramText.split(":");
+            	params = paramText.split(": ");
 
               j = $.parseJSON('{ "{0}":"{1}" }'.f(params[0],params[1]) );
               $.extend(json,j);
@@ -81,7 +81,7 @@ $(document).ready(function() {
             for (i = 0; i < queries.length; i = i+1){
             	paramText = queries[i].replaceAll('"','');
             	
-            	params = paramText.split(":");
+            	params = paramText.split(": ");
 
               j = $.parseJSON('{ "{0}":"{1}" }'.f(params[0],params[1]) );
               $.extend(json,j);
