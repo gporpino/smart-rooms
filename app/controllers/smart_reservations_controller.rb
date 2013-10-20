@@ -7,7 +7,9 @@ class SmartReservationsController < ApplicationController
   def search
 
     # result = JSON.parse(params)
-    room = params[:room]
+    room = params[:date]
+
+    debugger
 
     @rooms = Room.all
 
