@@ -8,7 +8,7 @@
     <section>
       <p>
         <% @room.users.each_with_index do |u, index| %>
-          <%= link_to u.name, u %><%= ',' unless index == @room.users.size - 1%>
+          <%= link_to u == current_user ? "me" : u.name, u %><%= ',' unless index == @room.users.size - 1%>
         <% end %>
       </p>
     </section>
