@@ -9,11 +9,7 @@ gem 'cancan'
 gem 'will_paginate', '~> 3.0'
 gem 'ransack'
 gem 'faker'
-
-# Use postgresql as the database for Active Record
-group :development do
-  gem 'pg'
-end
+gem 'bootstrap-datetimepicker-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -24,13 +20,8 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
-
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
-gem 'bootstrap-datetimepicker-rails'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -49,15 +40,6 @@ gem 'chosen-rails'
 
 gem 'compass-rails', github: 'Compass/compass-rails'
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
 # Use debugger
 gem 'debugger', group: [:development, :test]
 
@@ -67,8 +49,11 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.0'
   gem "factory_girl_rails"
 end
- 
 
+# Use postgresql as the database for Active Record
+group :development do
+  gem 'pg'
+end
 
 group :production do
   gem 'mysql2' # If using mysql in development, this can be outside the production group.
