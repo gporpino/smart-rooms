@@ -1,14 +1,10 @@
-
 require 'factory_girl'
 
-
 FactoryGirl.define do
-	
 
   factory :room do
     name :name
-    owner 
-	
+    owner
   end
 
 end

@@ -7,17 +7,17 @@ class Reservation < ActiveRecord::Base
   validates :end_date, presence: true
   validates :room_id, presence: true
 
-  validate :interception, on: :create
+  validate :interception
 
-  default_scope order("initial_date ASC")
-
-
+  default_scope { order("initial_date ASC") }
 
   def interception
-    reservations = Reservation.where('(initial_date < ? and end_date > ?) or (end_date > ? and initial_date < ?)',
-     end_date, end_date, initial_date, initial_date)
+    count =
+    Reservation.where(
+    '(initial_date BETWEEN :initial_date AND :end_date OR end_date BETWEEN :initial_date AND :end_date) OR (initial_date <= :initial_date AND end_date >= :end_date)',
+     end_date: end_date, initial_date: initial_date).count
 
-    if reservations.count > 0
+    if count > 0
       errors.add(:base, 'This reservation has date time insterceped with other reservation.')
     end
   end
