@@ -2,7 +2,9 @@ Smartrooms::Application.routes.draw do
 
   resources :rooms do
     get '/all/reservations',  to: 'rooms#reservation'
-    resources :reservations
+    post '/search' => 'reservations#search'
+    resources :reservations do
+    end
   end
 
   resources :users, except: [:index]

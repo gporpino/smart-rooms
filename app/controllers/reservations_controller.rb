@@ -2,10 +2,16 @@ class ReservationsController < ApplicationController
   load_and_authorize_resource :room
   load_and_authorize_resource :through => :room
 
+  def search
+    index
+    render :index
+  end
 
   # GET /reservations
   # GET /reservations.json
   def index
+    @search = @reservations.search(params[:q])
+    @reservations = @search.result.paginate(:page => params[:page])
   end
 
   # GET /reservations/1

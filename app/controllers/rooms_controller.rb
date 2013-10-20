@@ -73,8 +73,8 @@ class RoomsController < ApplicationController
       {
         startDate: r.initial_date.strftime('%Y/%m/%d %H:%M:%S'),
         endDate: r.end_date.strftime('%Y/%m/%d %H:%M:%S'),
-        title: "#{r.owner.name} ends #{r.end_date.strftime('%H:%M')}",
-        description: "#{r.owner.name} for #{r.reason} lets take #{distance_of_time_in_words(r.initial_date, r.end_date)}",
+        title: "#{r.owner.name} for #{r.reason.empty? ? 'a not defined metting' : r.reason} ends #{r.end_date.strftime('%m/%d %H:%M')} will take #{distance_of_time_in_words(r.initial_date, r.end_date)}",
+        description: "#{r.initial_date.strftime('%Y/%m/%d %H:%M:%S')} to #{r.end_date.strftime('%Y/%m/%d %H:%M:%S')}",
         priority: 3,
         frecuency: 1
       }
@@ -87,12 +87,12 @@ class RoomsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       params.require(:room).permit(:owner_id, :name, {:user_ids => [] })
-      
+
     end
 
     def room_params_update
       params.require(:room).permit(:name, {:user_ids => [] })
-      
+
     end
 
     def list_associates
