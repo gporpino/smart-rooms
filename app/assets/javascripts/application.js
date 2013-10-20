@@ -40,6 +40,10 @@ String.prototype.format = String.prototype.f = function() {
     return s;
 };
 
+String.prototype.replaceAll = function(find, replace) {
+  return this.replace(new RegExp(find, 'g'), replace);
+};
+
 $(document).ready(function() {
     var visualSearch = VS.init({
       container : $('.visual_search'),
@@ -49,10 +53,14 @@ $(document).ready(function() {
 
           json = {};
           if (query.trim() != ""){
-            queries = query.split(' ');
+            queries = query.split('" ');
 
-            for (i = 0; i < queries.length; i = i+2){
-              j = $.parseJSON('{ "{0}":{1} }'.f(queries[i].replace(':',''),queries[i+1]));
+            for (i = 0; i < queries.length; i = i+1){
+            	paramText = queries[i].replaceAll('"','');
+            	
+            	params = paramText.split(":");
+
+              j = $.parseJSON('{ "{0}":"{1}" }'.f(params[0],params[1]) );
               $.extend(json,j);
             }
           }
@@ -68,10 +76,14 @@ $(document).ready(function() {
 
           json = [];
           if (query.trim() != ""){
-            queries = query.split(' ');
+            queries = query.split('" ');
 
-            for (i = 0; i < queries.length; i = i+2){
-              j = $.parseJSON('{ "{0}":{1} }'.f(queries[i].replace(':',''),queries[i+1]));
+            for (i = 0; i < queries.length; i = i+1){
+            	paramText = queries[i].replaceAll('"','');
+            	
+            	params = paramText.split(":");
+
+              j = $.parseJSON('{ "{0}":"{1}" }'.f(params[0],params[1]) );
               $.extend(json,j);
             }
           }
