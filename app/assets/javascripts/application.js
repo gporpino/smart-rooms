@@ -45,24 +45,38 @@ $(document).ready(function() {
       container : $('.visual_search'),
       query     : '',
       callbacks : {
-        search       : function(query, searchCollection) {
+        search: function(query, searchCollection) {
 
-          var query_json = {
-              username: $("#usr").val(),
-              password: $("#psw").val()
+          json = {};
+          if (query.trim() != ""){
+            queries = query.split(' ');
+
+            for (i = 0; i < queries.length; i = i+2){
+              j = $.parseJSON('{ "{0}":{1} }'.f(queries[i].replace(':',''),queries[i+1]));
+              $.extend(json,j);
+            }
           }
 
-          $.getJSON( "/smart_reservations/search", list, function( data ) {
+          $.getJSON( "/smart_reservations/search.json", json, function( data ) {
             callback(data)
           });
 
         },
         facetMatches : function(callback) {
 
-					facets = visualSearch.searchQuery.facets();
+          query = visualSearch.searchBox.currentQuery;
 
+          json = [];
+          if (query.trim() != ""){
+            queries = query.split(' ');
 
-          $.getJSON( "/smart_reservations/facets", facets, function( data ) {
+            for (i = 0; i < queries.length; i = i+2){
+              j = $.parseJSON('{ "{0}":{1} }'.f(queries[i].replace(':',''),queries[i+1]));
+              $.extend(json,j);
+            }
+          }
+
+          $.getJSON( "/smart_reservations/facets.json", json, function( data ) {
             callback(data)
           });
         },

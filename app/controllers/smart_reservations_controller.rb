@@ -49,7 +49,6 @@ class SmartReservationsController < ApplicationController
         @result = intervals.map do |r|
           r.to_s(format = :time)
           end
-
     end
     render json: @result
   end
