@@ -1,0 +1,32 @@
+<%- model_class = Reservation -%>
+<h1>Smart Reservation</h1>
+
+<div class="visual_search"></div>
+
+<br>
+
+<%= link_to 'New Reservation', new_room_reservation_path(@room), class: 'btn btn-primary' %>
+
+<script >
+$(document).ready(function() {
+    var visualSearch = VS.init({
+      container : $('.visual_search'),
+      query     : '',
+      callbacks : {
+        search       : function(query, searchCollection) {},
+        facetMatches : function(callback) {
+          $.getJSON( "/smart_reservations/facets.json", function( data ) {
+            callback(data)
+          });
+        },
+        valueMatches : function(facet, searchTerm, callback) {
+          
+            $.getJSON( "smart_reservations/values.json", { facet: facet} ).done(function( data ) {
+                callback(data)
+            });  
+          }
+        }
+      });
+  });
+
+</script>
