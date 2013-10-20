@@ -119,7 +119,7 @@ it "save reservation limite initial" do
 
     reservation.save
 
-    reservation2 = FactoryGirl.build(:reservation, initial_date: (now + 10.minutes) , end_date: now - (1.hour - 10.minutes))
+    reservation2 = FactoryGirl.build(:reservation, initial_date: (now + 10.minutes) , end_date: (now + 1.hour) - 10.minutes)
     
     reservation2.should_not be_valid
   end
@@ -128,7 +128,7 @@ it "save reservation limite initial" do
 
     now = DateTime.now
 
-    reservation = FactoryGirl.build(:reservation, initial_date: (now + 10.minutes) , end_date: now - (1.hour - 10.minutes))
+    reservation = FactoryGirl.build(:reservation, initial_date: (now + 10.minutes) , end_date: (now + 1.hour) - 10.minutes)
     reservation.should be_valid
     reservation.save
 
