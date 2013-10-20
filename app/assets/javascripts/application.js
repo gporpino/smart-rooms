@@ -57,7 +57,7 @@ $(document).ready(function() {
 
             for (i = 0; i < queries.length; i = i+1){
             	paramText = queries[i].replaceAll('"','');
-            	
+
             	params = paramText.split(": ");
 
               j = $.parseJSON('{ "{0}":"{1}" }'.f(params[0],params[1]) );
@@ -65,8 +65,8 @@ $(document).ready(function() {
             }
           }
 
-          $.getJSON( "/smart_reservations/search.json", json, function( data ) {
-            callback(data)
+          $.get( "/smart_reservations/search", json, function( result ) {
+            $('#result').html(result);
           });
 
         },
@@ -80,7 +80,7 @@ $(document).ready(function() {
 
             for (i = 0; i < queries.length; i = i+1){
             	paramText = queries[i].replaceAll('"','');
-            	
+
             	params = paramText.split(": ");
 
               j = $.parseJSON('{ "{0}":"{1}" }'.f(params[0],params[1]) );
