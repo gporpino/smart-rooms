@@ -27,6 +27,7 @@ class SmartReservationsController < ApplicationController
 
     end
 
+    # todo
     @rooms = @rooms.where(name: room) if room
 
     render 'result', :layout => false
@@ -38,7 +39,7 @@ class SmartReservationsController < ApplicationController
     facets << 'starts' unless params[:starts]
     facets << 'date' unless params[:date]
     facets << 'duration' unless params[:duration]
-    facets << 'room' unless params[:room]
+
 
     render json: facets
   end
