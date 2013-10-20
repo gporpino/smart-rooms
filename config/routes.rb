@@ -20,6 +20,6 @@ Smartrooms::Application.routes.draw do
 
 
   get '/smart_reservations/facets',  to: 'smart_reservations#facets'
-  get '/smart_reservations/values',  to: 'smart_reservations#values'
+  get '/smart_reservations/values/:facet',  to: 'smart_reservations#values'
 
 end

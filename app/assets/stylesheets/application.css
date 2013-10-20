@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require chosen
- *= require dp_calendar
  *= require_tree .
+ *= require dp_calendar
+ *= require visualsearch
  */

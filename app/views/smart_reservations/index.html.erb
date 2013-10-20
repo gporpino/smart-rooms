@@ -15,15 +15,14 @@ $(document).ready(function() {
       callbacks : {
         search       : function(query, searchCollection) {},
         facetMatches : function(callback) {
-          $.getJSON( "/smart_reservations/facets.json", function( data ) {
+          $.getJSON( "/smart_reservations/facets", function( data ) {
             callback(data)
           });
         },
         valueMatches : function(facet, searchTerm, callback) {
-          
-            $.getJSON( "smart_reservations/values.json", { facet: facet} ).done(function( data ) {
+            $.getJSON( "smart_reservations/values/"+ facet ).done(function( data ) {
                 callback(data)
-            });  
+            });
           }
         }
       });

@@ -1,31 +1,31 @@
 class SmartReservationsController < ApplicationController
-	skip_authorization_check 
+	skip_authorization_check
 
-	
-	
+
+
 	def index
-    
+
   end
 
   def facets
 
-  	@result = ['room', 'when', 'time']
+  	@result = ['room', 'date', 'length']
   	render json: @result
-  end	
+  end
 
-  def values facet
+  def values
 
-  	case facet
+  	case params.require(:facet)
     	when 'room' then
         @result = [ 	{ value: '1', label: 'ITBC' },
           					{ value: '2', label: 'Cultura' },
           					{ value: '3', label: 'The Hub' } ]
-      
-      when 'when' then
+
+      when 'date' then
         @result = ['tomorrow', 'today']
 
-      
-      when 'time' then
+
+      when 'length' then
         @result = ['10:00', 'hugoamorimlyra@gmail.com', 'lucianoncoutinho@hotmail.com']
     end
 
