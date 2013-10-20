@@ -46,28 +46,23 @@ $(document).ready(function() {
       query     : '',
       callbacks : {
         search       : function(query, searchCollection) {
-        	var room;
-        	var when;
-          $(searchCollection).each(function (i, item){
-          	if (item.models[0].attributes.category == 'room'){
-          		room = item.models[0].attributes.value;
-          	}else if (item.models[0].attributes.category == 'when'){
-          		when = item.models[0].attributes.value;
-          	}
-          });
 
-          if (room && when){
-          	url = "/smart_reservations/search/{0}/{1}.json".f(room,when);
-          } else if (room){
-						url = "/smart_reservations/search/{0}.json".f(room);
+          var query_json = {
+              username: $("#usr").val(),
+              password: $("#psw").val()
           }
-          
-          $.getJSON( url, function( data ) {
+
+          $.getJSON( "/smart_reservations/search", list, function( data ) {
             callback(data)
           });
+
         },
         facetMatches : function(callback) {
-          $.getJSON( "/smart_reservations/facets.json", function( data ) {
+
+					facets = visualSearch.searchQuery.facets();
+
+
+          $.getJSON( "/smart_reservations/facets", facets, function( data ) {
             callback(data)
           });
         },
@@ -75,7 +70,7 @@ $(document).ready(function() {
             $.getJSON( "/smart_reservations/values/"+ facet +".json", function( data ) {
               callback(data)
             });
-            
+
           }
         }
       });

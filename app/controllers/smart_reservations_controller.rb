@@ -1,18 +1,25 @@
+require 'json'
 class SmartReservationsController < ApplicationController
+  skip_authorization_check
 
   def index
-
   end
 
   def search
-    room = params[:room]
-    whenn = params[:when]
-    @rooms = Room.all
-    render 'index'
+    result = JSON.parse(params)
+    @rooms = params
+    render 'result', :layout => false
   end
 
   def facets
-    render json: ['Starts in', 'Date', 'Length', 'Room is']
+  	facets = []
+
+  	facets << 'Starts in' unless params[:starts]
+  	facets << 'Date' unless params[:date]
+  	facets << 'Duration' unless params[:duration]
+  	facets << 'Room is' unless params[:room]
+
+  	render json: facets
   end
 
   def values
@@ -32,7 +39,7 @@ class SmartReservationsController < ApplicationController
           "next Tuesday","next Wednesday","next Thursday","next Friday",
           "next Saturday","next Sunday"]
 
-      when 'Length' then
+      when 'Duration' then
         @result = ["0.5 hours","1 hour","1.5 hours","2 hours",
           "2.5 hours","3 hours","3.5 hours","4 hours","4.5 hours",
           "5 hours","5.5 hours","6 hours","6.5 hours","7 hours",
@@ -41,7 +48,7 @@ class SmartReservationsController < ApplicationController
       when 'Starts in' then
         @result = intervals.map do |r|
           r.to_s(format = :time)
-        end
+          end
 
     end
     render json: @result

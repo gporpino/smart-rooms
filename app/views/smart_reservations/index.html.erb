@@ -7,14 +7,5 @@
   <%= link_to "Search", search_path %>
 </span>
 
-<% if @rooms %>
-<div class="span8 offset2 search_result">
-
-  <h3>We found good places with yours expectations.</h3>
-
-  <ol class="rooms">
-    <%= render @rooms %>
-  </ol>
-</div>
-<%end%>
+<div id='result'></div>
 
