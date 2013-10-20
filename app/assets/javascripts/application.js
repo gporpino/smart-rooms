@@ -47,23 +47,39 @@ $(document).ready(function() {
       callbacks : {
         search: function(query, searchCollection) {
         	
-        	var list = [];
-          $(searchCollection).each(function (i, item){
-          	list.push(item.models[0].attributes);
-          	
-          });
+        	json = {};
+        	if (query.trim() != ""){
+	        	queries = query.split(' ');
+	        	
+	        	
+	        	for (i = 0; i < queries.length; i = i+2){
+	        		j = $.parseJSON('{ "{0}":{1} }'.f(queries[i].replace(':',''),queries[i+1]));
+	        		$.extend(json,j);
+	        	}
+					}
 
-          $.getJSON( "/smart_reservations/search.json", list, function( data ) {
+
+
+          $.getJSON( "/smart_reservations/search.json", json, function( data ) {
             callback(data)
           });
           
         },
         facetMatches : function(callback) {
 					
-					facets = visualSearch.searchQuery.facets();
-
+					query = visualSearch.searchBox.currentQuery;
 					
-          $.getJSON( "/smart_reservations/facets.json", facets, function( data ) {
+					json = [];
+        	if (query.trim() != ""){
+	        	queries = query.split(' ');
+	        	
+	        	for (i = 0; i < queries.length; i = i+2){
+	        		j = $.parseJSON('{ "{0}":{1} }'.f(queries[i].replace(':',''),queries[i+1]));
+	        		$.extend(json,j);
+	        	}
+					}
+
+          $.getJSON( "/smart_reservations/facets.json", json, function( data ) {
             callback(data)
           });
         },
