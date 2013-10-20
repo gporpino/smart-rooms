@@ -23,6 +23,8 @@
       <%= content_tag :p, @reservation.end_date.to_formatted_s(:long) %>
       <%= content_tag :h3, model_class.human_attribute_name(:reason) %>
       <%= content_tag :p, @reservation.reason %>
+      <%= content_tag :h3, 'Time' %>
+      <%= content_tag :p, distance_of_time_in_words(@reservation.initial_date, @reservation.end_date) %>
      </section>
   </aside>
 </div>

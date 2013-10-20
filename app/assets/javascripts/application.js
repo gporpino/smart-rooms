@@ -16,5 +16,11 @@
 //= require bootstrap
 //= require bootstrap-datetimepicker
 //= require turbolinks
+//= require migration
+//= require jquery.ui.core.js
+//= require jquery.ui.position.js
+//= require jquery.ui.datepicker.js
+//= require date.js
+//= require jquery.dp_calendar.min.js
 //= require_tree .
 

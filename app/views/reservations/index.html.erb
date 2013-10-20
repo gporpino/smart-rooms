@@ -5,15 +5,17 @@
     <tr>
       <th>Initial date</th>
       <th>End date</th>
+      <th></th>
       <th>Owner</th>
     </tr>
   </thead>
 
   <tbody>
     <% @reservations.each do |reservation| %>
-      <tr data-link="<%= reservation_path(reservation) %>" class='table_row'>
+      <tr data-link="<%= room_reservation_path(reservation.room, reservation) %>" class='table_row'>
         <td><%= reservation.initial_date.to_formatted_s(:short)   %></td>
         <td><%= reservation.end_date.to_formatted_s(:short)   %></td>
+        <td><%= distance_of_time_in_words(reservation.initial_date, reservation.end_date) %>
         <td><%= reservation.owner.name %></td>
       </tr>
     <% end %>
@@ -22,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Reservation', new_reservation_path, class: 'btn btn-primary' %>
+<%= link_to 'New Reservation', new_room_reservation_path(@room), class: 'btn btn-primary' %>

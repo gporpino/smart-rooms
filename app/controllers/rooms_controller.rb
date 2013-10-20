@@ -1,5 +1,7 @@
 class RoomsController < ApplicationController
+  include ActionView::Helpers::DateHelper
   load_and_authorize_resource
+
 
   # GET /rooms
   # GET /rooms.json
@@ -12,7 +14,7 @@ class RoomsController < ApplicationController
   # GET /rooms/1.json
   def show
     @search = @room.reservations.search(params[:q])
-    @reservations = @search.result.where("initial_date > ?", Date.today).paginate(:page => params[:page], :per_page => 5)
+    @reservations = @search.result.where("initial_date > ?", Date.today).paginate(:page => params[:page], :per_page => 4)
   end
 
   # GET /rooms/new
@@ -62,6 +64,20 @@ class RoomsController < ApplicationController
       format.html { redirect_to rooms_url :flash => { success: 'Room was successfully destroyed.' } }
       format.json { head :no_content }
     end
+  end
+
+  def reservation
+    reservations = Room.find(params.require(:id)).reservations.map do |r|
+      {
+        startDate: r.initial_date.strftime('%Y/%m/%d %H:%M:%S'),
+        endDate: r.end_date.strftime('%Y/%m/%d %H:%M:%S'),
+        title: "#{r.owner.name} ends #{r.end_date.strftime('%H:%M')}",
+        description: "#{r.owner.name} for #{r.reason} lets take #{distance_of_time_in_words(r.initial_date, r.end_date)}",
+        priority: 3,
+        frecuency: 1
+      }
+    end
+    render :json => reservations
   end
 
   private

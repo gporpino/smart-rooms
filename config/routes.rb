@@ -8,9 +8,10 @@ Smartrooms::Application.routes.draw do
 
   resources :sessions, only: [:new, :create, :destroy]
 
-  match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
+  get '/signup',  to: 'users#new'
+  get '/signin',  to: 'sessions#new'
+  delete '/signout', to: 'sessions#destroy'
+  get '/reservations/:id',  to: 'rooms#reservation'
 
   root :to => 'rooms#index', :constraints => lambda{|req| !req.session[:user_id].blank?}, as: :authenticated_root
   root :to => 'static_pages#home'
