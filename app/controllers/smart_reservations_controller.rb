@@ -20,10 +20,9 @@ class SmartReservationsController < ApplicationController
 
       end_date = initial + (duration.split(' ').first).to_i.hours
 
-      @rooms = @rooms.join(:reservations).where(
+      @rooms = @rooms.where(
         '((reservations.initial_date BETWEEN :initial_date AND :end_date OR reservations.end_date BETWEEN :initial_date AND :end_date)
-        OR (reservations.initial_date <= :initial_date AND end_date >= :end_date))
-        AND room_id = :room_id',
+        OR (reservations.initial_date <= :initial_date AND end_date >= :end_date))',
         end_date: end_date, initial_date: initial_date)
 
     end
@@ -40,7 +39,7 @@ class SmartReservationsController < ApplicationController
     facets << 'starts' unless params[:starts]
     facets << 'date' unless params[:date]
     facets << 'duration' unless params[:duration]
-    
+
 
     render json: facets
   end

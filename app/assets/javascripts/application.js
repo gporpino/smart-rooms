@@ -28,6 +28,7 @@
 //= require date
 //= require jquery.dp_calendar.min
 //= require visualsearch
+
 //= require_tree . 
 
 
@@ -106,4 +107,5 @@ $(document).ready(function () {
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
+
 
