@@ -1,7 +1,7 @@
 Smartrooms::Application.routes.draw do
 
   resources :rooms do
-    get '/reservations',  to: 'rooms#reservation'
+    get '/all/reservations',  to: 'rooms#reservation'
     resources :reservations
   end
 
