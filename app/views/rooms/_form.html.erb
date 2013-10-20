@@ -5,7 +5,7 @@
   <%= f.hidden_field :owner_id %>
   <%= f.label :name %>
   <%= f.text_field :name %>
-  <%= f.label :users %>
+  <%= f.label :associators %>
   <%= f.select :user_ids,
     User.all.map { |u| [u.name, u.id] },
     { include_blank: true },
