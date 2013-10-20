@@ -17,14 +17,14 @@ class SmartReservationsController < ApplicationController
   end
 
   def facets
-  	facets = []
+    facets = []
 
-  	facets << 'starts' unless params[:starts]
-  	facets << 'date' unless params[:date]
-  	facets << 'duration' unless params[:duration]
-  	facets << 'room' unless params[:room]
+    facets << 'starts' unless params[:starts]
+    facets << 'date' unless params[:date]
+    facets << 'duration' unless params[:duration]
+    facets << 'room' unless params[:room]
 
-  	render json: facets
+    render json: facets
   end
 
   def values
