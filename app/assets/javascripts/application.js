@@ -74,7 +74,7 @@ $(document).ready(function() {
 
           query = visualSearch.searchBox.currentQuery;
 
-          json = [];
+          json = {};
           if (query.trim() != ""){
             queries = query.split('" ');
 
