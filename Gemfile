@@ -59,9 +59,16 @@ gem 'compass-rails', github: 'Compass/compass-rails'
 # gem 'capistrano', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+gem 'debugger', group: [:development, :test]
 
 gem 'capistrano', '~> 2.15'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 2.0'
+  gem "factory_girl_rails"
+end
+ 
+
 
 group :production do
   gem 'mysql2' # If using mysql in development, this can be outside the production group.

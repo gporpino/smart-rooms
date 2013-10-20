@@ -4,6 +4,9 @@
 
   <%= f.hidden_field :owner_id %>
 
+  <%= f.label 'What I want to do?' %>
+  <%= f.text_field :reason %>
+
   <%= f.label :initial_date %>
   <div class="input-append date datetimepicker">
     <%= f.text_field :initial_date, data: {format: "yyyy-MM-dd hh:mm"} %>
@@ -21,9 +24,6 @@
       </i>
     </span>
   </div>
-
-  <%= f.label :reason %>
-  <%= f.text_field :reason %>
 
   <hr>
 
