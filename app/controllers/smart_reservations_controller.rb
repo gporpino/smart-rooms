@@ -10,6 +10,7 @@ class SmartReservationsController < ApplicationController
   def facets
 
   	@result = ['room', 'when', 'time']
+  	render json: @result
   end	
 
   def values facet
@@ -28,7 +29,7 @@ class SmartReservationsController < ApplicationController
         @result = ['10:00', 'hugoamorimlyra@gmail.com', 'lucianoncoutinho@hotmail.com']
     end
 
-    @result
+    render json: @result
   end
 
 end
