@@ -18,10 +18,14 @@ class SmartReservationsController < ApplicationController
 
   def facets
 
+  	facets = []
 
-  	@result = ['starts', 'date', 'length']
+  	facets << 'starts' unless params[:starts]
+  	facets << 'date' unless params[:date]
+  	facets << 'duration' unless params[:duration]
+  	facets << 'room' unless params[:room]
 
-  	render json: @result
+  	render json: facets
   end
 
 
@@ -38,9 +42,8 @@ class SmartReservationsController < ApplicationController
       when 'date' then
         @result = ["today","tomorrow","day after tomorrow","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday","in 1 days","in 2 days","in 3 days","in 4 days","in 5 days","in 6 days","next Monday","next Tuesday","next Wednesday","next Thursday","next Friday","next Saturday","next Sunday"]
 
-      when 'length' then
+      when 'duration' then
         @result = ["0.5 hours","1 hour","1.5 hours","2 hours","2.5 hours","3 hours","3.5 hours","4 hours","4.5 hours","5 hours","5.5 hours","6 hours","6.5 hours","7 hours","7.5 hours","8 hours","8.5 hours"]
-
 
       when 'starts' then
 
