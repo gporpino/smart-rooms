@@ -2,6 +2,8 @@ class RoomsController < ApplicationController
   include ActionView::Helpers::DateHelper
   load_and_authorize_resource
 
+  before_action :list_associates, only: [:new, :edit]
+
   # GET /rooms
   # GET /rooms.json
   def index
@@ -44,6 +46,7 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1
   # PATCH/PUT /rooms/1.json
   def update
+
     respond_to do |format|
       if @room.update(room_params_update)
         format.html { redirect_to @room, :flash => { success: 'Room was successfully updated.' } }
@@ -84,9 +87,15 @@ class RoomsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
       params.require(:room).permit(:owner_id, :name, {:user_ids => [] })
+      
     end
 
     def room_params_update
       params.require(:room).permit(:name, {:user_ids => [] })
+      
+    end
+
+    def list_associates
+      @associates = User.all - [current_user]
     end
 end
