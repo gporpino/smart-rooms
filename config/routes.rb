@@ -15,7 +15,11 @@ Smartrooms::Application.routes.draw do
   get '/signin',  to: 'sessions#new'
   delete '/signout', to: 'sessions#destroy'
 
-  root :to => 'rooms#index', :constraints => lambda{|req| !req.session[:user_id].blank?}, as: :authenticated_root
+  root :to => 'smart_reservations#index', :constraints => lambda{|req| !req.session[:user_id].blank?}, as: :authenticated_root
   root :to => 'static_pages#home'
+
+
+  get '/smart_reservations/facets',  to: 'smart_reservations#facets'
+  get '/smart_reservations/values',  to: 'smart_reservations#values'
 
 end
