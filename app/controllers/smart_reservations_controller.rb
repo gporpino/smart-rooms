@@ -7,26 +7,35 @@ class SmartReservationsController < ApplicationController
     
   end
 
+	def search
+		room = params[:room]
+		whenn = params[:when]
+
+		
+
+  	@result = ['room', 'when']
+  	render json: @result
+  end	  
+
   def facets
 
-  	@result = ['room', 'when', 'time']
+  	@result = ['room', 'when']
   	render json: @result
   end	
 
-  def values facet
+  def values 
+
+  	facet = params[:facet]
 
   	case facet
     	when 'room' then
-        @result = [ 	{ value: '1', label: 'ITBC' },
-          					{ value: '2', label: 'Cultura' },
-          					{ value: '3', label: 'The Hub' } ]
+        @result = [ 	{ value: 'ITBC', label: 'ITBC' },
+          					{ value: 'Cultura', label: 'Cultura' },
+          					{ value: 'The Hub', label: 'The Hub' } ]
       
       when 'when' then
         @result = ['tomorrow', 'today']
 
-      
-      when 'time' then
-        @result = ['10:00', 'hugoamorimlyra@gmail.com', 'lucianoncoutinho@hotmail.com']
     end
 
     render json: @result
