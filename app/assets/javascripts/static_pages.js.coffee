@@ -39,7 +39,7 @@ ready = ->
 
       facetMatches: (callback) ->
         query = visualSearch.searchBox.currentQuery
-        json = []
+        json = {}
         unless query.trim() is ""
           queries = query.split("\" ")
           i = 0
