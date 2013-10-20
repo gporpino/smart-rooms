@@ -109,4 +109,31 @@ it "save reservation limite initial" do
 		reservation2.should be_valid
   end
 
+  it "save reservation interval 1" do
+
+    now = DateTime.now
+
+    reservation = FactoryGirl.build(:reservation, initial_date: now, end_date: now + 1.hour)
+
+    reservation.should be_valid
+
+    reservation.save
+
+    reservation2 = FactoryGirl.build(:reservation, initial_date: (now + 10.minutes) , end_date: now - (1.hour - 10.minutes))
+    
+    reservation2.should_not be_valid
+  end
+
+  it "save reservation interval 2" do
+
+    now = DateTime.now
+
+    reservation = FactoryGirl.build(:reservation, initial_date: (now + 10.minutes) , end_date: now - (1.hour - 10.minutes))
+    reservation.should be_valid
+    reservation.save
+
+    reservation2 = FactoryGirl.build(:reservation, initial_date: now, end_date: now + 1.hour)
+    reservation2.should_not be_valid
+  end
+
 end
