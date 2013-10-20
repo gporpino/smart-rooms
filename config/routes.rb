@@ -18,11 +18,8 @@ Smartrooms::Application.routes.draw do
   root :to => 'smart_reservations#index', :constraints => lambda{|req| !req.session[:user_id].blank?}, as: :authenticated_root
   root :to => 'static_pages#home'
 
-
   get '/smart_reservations/facets',  to: 'smart_reservations#facets'
-
   get '/smart_reservations/values/:facet', to: 'smart_reservations#values'
-
   get '/smart_reservations/search/:room',  to: 'smart_reservations#search'
-  get '/smart_reservations/search/:room/:when',  to: 'smart_reservations#search'
+  get '/smart_reservations/search',  to: 'smart_reservations#search', as: :search
 end

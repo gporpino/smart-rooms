@@ -1,8 +1,20 @@
 <%- model_class = Reservation -%>
-<h1>Smart Reservation</h1>
+<span class="row">
+  <h1>Smart Reservation<strong class='question'> tell me what you need?</strong></h1>
+  <div class="span8 offset2">
+    <div class="visual_search"></div>
+  </div>
+  <%= link_to "Search", search_path %>
+</span>
 
-<div class="visual_search"></div>
+<% if @rooms %>
+<div class="span8 offset2 search_result">
 
-<br>
+  <h3>We found good places with yours expectations.</h3>
 
+  <ol class="rooms">
+    <%= render @rooms %>
+  </ol>
+</div>
+<%end%>
 
