@@ -1,4 +1,3 @@
-require 'json'
 class SmartReservationsController < ApplicationController
   skip_authorization_check
 
@@ -6,8 +5,7 @@ class SmartReservationsController < ApplicationController
   end
 
   def search
-    result = JSON.parse(params)
-    @rooms = params
+    @rooms = Room.all
     render 'result', :layout => false
   end
 
