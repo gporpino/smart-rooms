@@ -6,9 +6,11 @@
     </section>
     <section>
       <h4>
-        <% if can? :manage, @user %>
-          <%= link_to 'Edit', edit_user_path(@user) %> |
-        <%end%>
+        <% if not current_user.guest? %>
+          <% if can? :manage, @user %>
+            <%= link_to 'Edit', edit_user_path(@user) %> |
+          <%end%>
+        <%end%>  
         <% if current_user.guest? %>
           <%= link_to "Become a member", signup_path %> |
         <% end %>
