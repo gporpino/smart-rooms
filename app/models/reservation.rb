@@ -27,11 +27,11 @@ class Reservation < ActiveRecord::Base
 
   def initial_date_cannot_be_in_the_past
     errors.add(:initial_date, "can't be in the past") if
-      !initial_date.blank? and initial_date < Date.today
+      !initial_date.blank? and initial_date < Date.today - 10.minutes
   end
 
   def end_date_greather_than_initial_date
-    errors.add(:end_date, "must be grather than initial date") if
+    errors.add(:end_date, "Must be greather than initial date") if
       end_date <= initial_date
   end
 
