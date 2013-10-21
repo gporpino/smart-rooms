@@ -12,7 +12,7 @@ class SmartReservationsController < ApplicationController
     starts = params[:starts]
     duration = params[:duration]
 
-    @rooms = rooms
+    @rooms_i_belongs = rooms_i_belongs
 
     if date && starts && duration
 
@@ -20,15 +20,21 @@ class SmartReservationsController < ApplicationController
 
       end_date = initial + (duration.split(' ').first).to_i.hours
 
-      @rooms = @rooms.where(
-        '((reservations.initial_date BETWEEN :initial_date AND :end_date OR reservations.end_date BETWEEN :initial_date AND :end_date)
+      @rooms = Room.all.joins(:reservations).where(
+        'NOT ((reservations.initial_date BETWEEN :initial_date AND :end_date OR reservations.end_date BETWEEN :initial_date AND :end_date)
         OR (reservations.initial_date <= :initial_date AND end_date >= :end_date))',
-        end_date: end_date, initial_date: initial_date)
+        end_date: end_date, initial_date: initial).group('rooms.id')
 
+      @rooms = @rooms.where(name: room) if room
     end
 
+    @rooms = @rooms.map {|x| x}
+    
+    @rooms.delete_if {|x| 
+      @rooms_i_belongs.index(x) == nil 
+    }
     # todo
-    @rooms = @rooms.where(name: room) if room
+    # @rooms = @rooms.where(name: room) if room
 
     render 'result', :layout => false
   end
@@ -36,6 +42,7 @@ class SmartReservationsController < ApplicationController
   def facets
     facets = []
 
+    facets << 'room' unless params[:room]
     facets << 'starts' unless params[:starts]
     facets << 'date' unless params[:date]
     facets << 'duration' unless params[:duration]
@@ -49,7 +56,7 @@ class SmartReservationsController < ApplicationController
     case params.require(:facet)
 
       when 'room' then
-        @result = rooms.map do |r|
+        @result = rooms_i_belongs.map do |r|
           {value: r.name, label: r.name, id: r.id}
         end
 
@@ -77,7 +84,7 @@ class SmartReservationsController < ApplicationController
 
   private
 
-    def rooms
+    def rooms_i_belongs
       rooms_i_belongs = []
       current_user.rooms.each do |room|
         rooms_i_belongs << room
