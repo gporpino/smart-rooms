@@ -29,7 +29,7 @@
 //= require jquery.dp_calendar.min
 //= require visualsearch
 
-//= require_tree . 
+//= require_tree .
 
 
 String.prototype.format = String.prototype.f = function () {

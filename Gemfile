@@ -40,6 +40,8 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 gem 'chosen-rails'
 
+gem 'compass-rails', github: 'Compass/compass-rails'
+
 # Use debugger
 gem 'debugger', group: [:development, :test]
 
