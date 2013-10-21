@@ -42,7 +42,7 @@ class SmartReservationsController < ApplicationController
   def facets
     facets = []
 
-    facets << 'room' unless params[:room]
+    facets << 'room' unless params[:room] if params[:starts] && params[:date] && params[:duration]
     facets << 'starts' unless params[:starts]
     facets << 'date' unless params[:date]
     facets << 'duration' unless params[:duration]
